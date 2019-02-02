@@ -1,0 +1,82 @@
+package com.restCalls.main;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.codehaus.plexus.util.cli.CommandLineException;
+import org.codehaus.plexus.util.cli.CommandLineUtils;
+import org.codehaus.plexus.util.cli.Commandline;
+import org.codehaus.plexus.util.cli.WriterStreamConsumer;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CallScript {
+
+	public String callToScriptOne(String communityId,String paramOne,String versionId)
+	{
+		
+		Process p;
+        try {
+            
+            List<String> cmdList = new ArrayList<String>();
+            cmdList.add("sh");
+            cmdList.add("C:\\Users\\Prashant Chaudhary\\Desktop\\test.sh");
+            ProcessBuilder pb = new ProcessBuilder(cmdList);
+            p = pb.start();
+                
+            p.waitFor(); 
+            BufferedReader reader=new BufferedReader(new InputStreamReader(
+             p.getInputStream())); 
+            String line; 
+            while((line = reader.readLine()) != null) { 
+                System.out.println(line);
+            } 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		
+		String result = communityId+" "+paramOne+" "+versionId;
+		return result;
+	}
+	
+	public String callToScriptTwo(String communityId,String paramOne,String versionId,String paramTwo) throws IOException
+	{
+		String batfile = "batchTest.bat";
+		String directory = "C:\\Users\\Prashant Chaudhary\\Desktop";
+		
+		ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "upsert.bat");
+		File dir = new File("C:/Program Files/salesforce.com/Data Loader/cliq_process/upsert");
+		pb.directory(dir);
+		Process p = pb.start();
+		
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramTwo;
+		return result;
+	}
+	
+
+	public String callToScriptThird(String communityId,String paramOne,String versionId,String paramTwo,String paramThree)
+	{
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramThree;
+		return result;
+	}
+	
+	public String callToScriptFourth(String communityId,String paramOne,String versionId,String paramTwo, String paramThree,String paramFourth)
+	{
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramThree+" "+paramFourth;
+		return result;
+	}
+	
+	public String callToScriptFifth(String communityId,String paramOne,String versionId,String paramTwo,String paramThree,String paramFourth,String paramFifth)
+	{
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramTwo+" "+paramThree+" "+paramFourth+" "+paramFifth;
+		return result;
+	}
+	
+}

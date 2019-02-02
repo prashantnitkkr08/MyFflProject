@@ -1,0 +1,77 @@
+package com.restCalls.main;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CallController {
+
+	@Autowired
+	private CallScript callScript; 
+	
+	@GetMapping("/callScript/first/{communityId}/{paramOne}/{versionId}")
+	public String callScriptMethodOne(@PathVariable("communityId") String communityId,
+			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId) 
+	{
+		if(communityId!=null && paramOne!=null && versionId!=null) 
+		{
+			return callScript.callToScriptOne(communityId, paramOne, versionId) +" .Here we call "+"callScriptMethodOne";//call to script code will come
+		}
+			
+		
+		return "failure";
+	}
+	
+	@GetMapping("/callScript/second/{communityId}/{paramOne}/{versionId}/{paramTwo}")
+	public String callScriptMethodTwo(@PathVariable("communityId") String communityId,
+			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId,@PathVariable("paramTwo") String paramTwo) 
+	{
+		if(communityId!=null && paramOne!=null && versionId!=null && paramTwo!=null) 
+		{
+			return callScript.callToScriptTwo(communityId, paramOne, versionId, paramTwo)+". here we call "+ "callScriptMethodTwo";
+		}
+			
+		
+		return "failure";
+	}
+	@GetMapping("/callScript/third/{communityId}/{paramOne}/{versionId}/{paramTwo}/{paramThree}")
+	
+	public String callScriptMethodThree(@PathVariable("communityId") String communityId,
+			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId,
+			@PathVariable("paramTwo") String paramTwo,@PathVariable("paramThree") String paramThree)
+	{
+		if(communityId!=null && paramOne!=null && versionId!=null && paramTwo!=null && paramThree!=null)
+		{
+			return callScript.callToScriptThird(communityId, paramOne, versionId, paramTwo, paramThree)+". Here we call callScriptMethodThree called";//call to script code will come
+		}
+			
+		
+		return "failure";
+	}
+	
+	@GetMapping("/callScript/fourth/{communityId}/{paramOne}/{versionId}/{paramTwo}/{paramThree}/{paramFourth}")
+	public String callScriptMethodFour(@PathVariable("communityId") String communityId,
+			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId,
+			@PathVariable("paramTwo") String paramTwo,@PathVariable("paramThree") String paramThree,@PathVariable("paramFourth") String paramFourth)
+	{
+		if(communityId!=null && paramOne!=null && versionId!=null && paramTwo!=null && paramThree!=null && paramFourth != null)
+			return callScript.callToScriptFourth(communityId, paramOne, versionId, paramTwo, paramThree, paramFourth) +". here we call callScriptMethodFour called";//call to script code will come
+		
+		return "failure";
+	}
+	
+	@GetMapping("/callScript/fifth/{communityId}/{paramOne}/{versionId}/{paramTwo}/{paramThree}/{paramFourth}/{paramFifth}")
+	public String callScriptMethodFifth(@PathVariable("communityId") String communityId,
+			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId,
+			@PathVariable("paramTwo") String paramTwo,@PathVariable("paramThree") String paramThree,
+			@PathVariable("paramFourth") String paramFourth,@PathVariable("paramFifth") String paramFifth) 
+	{
+		if(communityId!=null && paramOne!=null && versionId!=null && paramTwo!=null && paramThree!=null && paramFourth != null && paramFifth!=null)
+			return "callScriptMethodFifth called";//call to script code will come
+		
+		return "failure";
+	}
+	
+}

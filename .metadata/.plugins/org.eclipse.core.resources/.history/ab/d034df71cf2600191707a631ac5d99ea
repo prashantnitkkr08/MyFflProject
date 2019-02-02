@@ -1,0 +1,78 @@
+package com.restCalls.main;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class CallScript {
+
+	public String callToScriptOne(String communityId,String paramOne,String versionId)
+	{
+		//running a shell file
+		Process p;
+        try {
+            
+            List<String> cmdList = new ArrayList<String>();
+            cmdList.add("sh");
+            cmdList.add("C:\\Users\\Prashant Chaudhary\\Desktop\\test.sh");
+            ProcessBuilder pb = new ProcessBuilder(cmdList);
+            p = pb.start();
+                
+            p.waitFor(); 
+            BufferedReader reader=new BufferedReader(new InputStreamReader(
+             p.getInputStream())); 
+            String line; 
+            while((line = reader.readLine()) != null) { 
+                System.out.println(line);
+            } 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		
+		String result = communityId+" "+paramOne+" "+versionId;
+		return result;
+	}
+	
+	public String callToScriptTwo(String communityId,String paramOne,String versionId,String paramTwo) throws IOException, InterruptedException
+	{
+		//running a bat file
+		ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "batchTest.bat");
+		File dir = new File("C:\\Users\\Prashant Chaudhary\\Desktop");
+		pb.directory(dir);
+		Process p = pb.start();
+		p.waitFor();
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramTwo;
+		return result;
+	}
+	
+
+	public String callToScriptThird(String communityId,String paramOne,String versionId,String paramTwo,String paramThree) throws IOException
+	{
+		//running command drom cmd
+		Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"dir && ping localhost\""); //ping example mac commands can also be put for running
+		
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramThree;
+		return result;
+	}
+	
+	public String callToScriptFourth(String communityId,String paramOne,String versionId,String paramTwo, String paramThree,String paramFourth)
+	{
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramThree+" "+paramFourth;
+		return result;
+	}
+	
+	public String callToScriptFifth(String communityId,String paramOne,String versionId,String paramTwo,String paramThree,String paramFourth,String paramFifth)
+	{
+		String result = communityId+" "+paramOne+" "+versionId+" "+paramTwo+" "+paramThree+" "+paramFourth+" "+paramFifth;
+		return result;
+	}
+	
+}

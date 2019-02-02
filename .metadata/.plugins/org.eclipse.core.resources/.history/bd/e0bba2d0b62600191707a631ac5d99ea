@@ -1,0 +1,10 @@
+package com.restCalls.beans;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class CallScript {
+
+	public String callToScript() {}
+	
+}
