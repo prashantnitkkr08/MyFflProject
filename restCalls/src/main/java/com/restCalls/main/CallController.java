@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,6 +21,19 @@ public class CallController {
 		if(communityId!=null && paramOne!=null && versionId!=null) 
 		{
 			return callScript.callToScriptOne(communityId, paramOne, versionId) +" .Here we call "+"callScriptMethodOne";//call to script code will come
+		}
+			
+		
+		return "failure";
+	}
+	
+	@PostMapping("/callScript/first/{communityId}/{paramOne}/{versionId}")
+	public String callScriptPostMethodOne(@PathVariable("communityId") String communityId,
+			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId) 
+	{
+		if(communityId!=null && paramOne!=null && versionId!=null) 
+		{
+			return communityId+" "+paramOne+" "+versionId+" is called with post";//call to script code will come
 		}
 			
 		
@@ -42,7 +56,7 @@ public class CallController {
 	
 	public String callScriptMethodThree(@PathVariable("communityId") String communityId,
 			@PathVariable("paramOne") String paramOne,@PathVariable("versionId") String versionId,
-			@PathVariable("paramTwo") String paramTwo,@PathVariable("paramThree") String paramThree) throws IOException
+			@PathVariable("paramTwo") String paramTwo,@PathVariable("paramThree") String paramThree) throws IOException, InterruptedException
 	{
 		if(communityId!=null && paramOne!=null && versionId!=null && paramTwo!=null && paramThree!=null)
 		{

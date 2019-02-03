@@ -14,7 +14,7 @@ public class CallScript {
 
 	public String callToScriptOne(String communityId,String paramOne,String versionId)
 	{
-		//CallLogic.shellScriptExecution();
+		CallLogic.shellScriptExecution("sh /root/Desktop/testScript.sh");//pass the path of script file
 		String result = communityId+" "+paramOne+" "+versionId;
 		return result;
 	}
@@ -22,16 +22,15 @@ public class CallScript {
 	public String callToScriptTwo(String communityId,String paramOne,String versionId,String paramTwo) throws IOException, InterruptedException
 	{
 		//running a bat file
-		//CallLogic.batFileExecution();
+		CallLogic.batFileExecution();
 		String result = communityId+" "+paramOne+" "+versionId+" "+paramTwo;
 		return result;
 	}
 	
-
-	public String callToScriptThird(String communityId,String paramOne,String versionId,String paramTwo,String paramThree) throws IOException
+	public String callToScriptThird(String communityId,String paramOne,String versionId,String paramTwo,String paramThree) throws IOException, InterruptedException
 	{
-		//running command drom cmd
-		//CallLogic.executionThroughTerminal();
+		//running command from cmd
+		CallLogic.executionThroughTerminal();
 		
 		String result = communityId+" "+paramOne+" "+versionId+" "+paramThree;
 		return result;
